@@ -20,7 +20,7 @@ provider "azurerm" {
 }
 
 
-resource "meganeura-rg" "example" {
-  name     = "example"
-  location = "switzerlandnorth"
+resource "azurerm_resource_group" "example" {
+  name     = "meganeura-rg"
+  location = "Switzerland North"
 }
