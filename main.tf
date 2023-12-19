@@ -18,3 +18,9 @@ terraform {
 provider "azurerm" {
   features {}
 }
+
+
+resource "meganeura-rg" "example" {
+  name     = "example"
+  location = "switzerlandnorth"
+}
