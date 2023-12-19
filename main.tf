@@ -1,28 +1,20 @@
+# Define Terraform provider
 terraform {
+  required_version = ">= 1.3"
+  backend "azurerm" {
+    resource_group_name  = "mn-tfstate-rg"
+    storage_account_name = "mntfstate"
+    container_name       = "tfstate"
+    key                  = "prod.terraform.tfstate"
+  }
   required_providers {
     azurerm = {
+      version = "~>3.2"
       source  = "hashicorp/azurerm"
-      version = ">= 3.7.0"
     }
   }
-
-  # Update this block with the location of your terraform state file
-  backend "azurerm" {
-    resource_group_name  = "meganeura-tfstate"
-    storage_account_name = "meganeuratfstate"
-    container_name       = "meganeura-tfstate"
-    key                  = "prod.terraform.tfstate"
-    use_oidc             = true
-  }
 }
-
+# Configure the Azure provider
 provider "azurerm" {
   features {}
-  use_oidc = true
-}
-
-# Define any Azure resources to be created here. A simple resource group is shown here as a minimal example.
-resource "azurerm_resource_group" "rg-aks" {
-  name     = var.resource_group_name
-  location = var.location
 }
